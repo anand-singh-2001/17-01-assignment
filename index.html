@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css"
+      rel="stylesheet" />
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+      .container {
+        width: 100vw;
+        height: 400px;
+      }
+      .wrapper {
+        margin: 100px auto;
+        padding: 0 1rem;
+        max-width: 1440px;
+      }
+      .caption {
+        font-size: 1rem;
+        letter-spacing: 0.28rem;
+        text-transform: uppercase;
+        line-height: calc(1 + 0.2 / 1);
+        font-family: Arial, Helvetica, sans-serif; /* Santoshi Bold- get something similar*/
+        font-style: normal;
+        font-weight: 550;
+        color: #da291c;
+      }
+      .main_section {
+        color: rgba(19, 21, 23, 0.75);
+        display: flex;
+        align-items: center;
+        flex-wrap: nowrap;
+        font-family: Arial, Helvetica, sans-serif; /* Santoshi Regular- get something similar*/
+        font-style: normal;
+        font-weight: 400;
+        height: 300px;
+        letter-spacing: normal;
+        line-height: 22px;
+        width: 1380px;
+        margin-top: 5px;
+      }
+      .brands_info {
+        color: rgba(19, 21, 23, 0.75);
+        display: flex;
+        font-family: Arial, Helvetica, sans-serif; /* Santoshi Regular- get something similar*/
+        font-size: 16px;
+        font-weight: 400;
+        height: 100%;
+        letter-spacing: normal;
+        line-height: 22px;
+        max-width: 480px;
+        align-items: flex-start;
+        flex-direction: column;
+        justify-content: space-evenly;
+        width: 48%;
+      }
+      .brands_info_para {
+        /* color: #111314 !important; */
+        font-size: 1.2rem;
+        font-weight: 200;
+        flex-wrap: wrap;
+        line-height: 22px;
+      }
+      .shop_all_btn {
+        display: inline-flex;
+        align-items: center;
+        background-color: rgb(19, 21, 23);
+        border-radius: 25px;
+        font-size: 16px;
+        font-weight: 700;
+        justify-content: center;
+        line-height: 19.2px;
+        min-height: 47px;
+        min-width: 264px;
+        position: relative;
+        text-transform: uppercase;
+        /* box-shadow: rgba(19, 21, 23, 0) 0px 0px 0px 0px; */
+        /* transition: box-shadow 0.1s ease; */
+        text-decoration: none;
+        color: white;
+      }
+
+      .shop_all_btn:hover,
+      .btn_shop_all_small:hover {
+        transform: scale(1.005);
+        transition: transform 0.05s;
+      }
+
+      .slider {
+        width: 72%;
+        background-color: white;
+        /* height: 100%; */
+        margin-left: 50px;
+        padding-left: 4%;
+        margin-left: 2%;
+        margin-top: 0;
+        overflow: hidden;
+        margin-right: calc(-50vw + 50%);
+      }
+      .splide {
+        height: 100%;
+      }
+
+      .splide__arrow {
+        -ms-flex-align: center;
+        align-items: center;
+        border: 0;
+        background: black;
+        border-radius: 50%;
+        cursor: pointer;
+        display: -ms-flexbox;
+        display: flex;
+        height: 3em;
+        -ms-flex-pack: center;
+        justify-content: center;
+        opacity: 1;
+        padding: 1px;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 3em;
+        z-index: 1;
+      }
+      .splide__arrow svg {
+        fill: white;
+        height: 1.2em;
+        width: 1.2em;
+      }
+      /* .splide__list {
+        gap: 1.5rem;
+      } */
+      .slider_element img {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        margin-right: 10px;
+        object-fit: cover;
+      }
+      .arrow-right {
+        position: absolute;
+        left: 20px;
+        /* top: 240px;
+         */
+        bottom: 10px;
+      }
+
+      .splide__arrow .splide__arrow--next {
+        background: black;
+        /* color: white; */
+      }
+      .splide__arrow .splide__arrow--next::before {
+        content: ">";
+        color: white;
+        font-size: 100%;
+        font-weight: 1200;
+        padding-left: 10px;
+      }
+      .splide__arrow.splide__arrow--prev {
+        display: none;
+      }
+      .splide__arrow.hidden {
+        display: none;
+      }
+      .brand_info_title {
+        font-size: 4.8rem;
+        font-weight: 200;
+        color: rgb(19, 21, 23);
+      }
+      .btn_shop_all_small {
+        display: none;
+        /* display: inline-flex; */
+        align-items: center;
+        background-color: rgb(19, 21, 23);
+        border-radius: 25px;
+        font-size: 16px;
+        font-weight: 700;
+        justify-content: center;
+        line-height: 19.2px;
+        min-height: 47px;
+        min-width: 264px;
+        position: relative;
+        text-transform: uppercase;
+        /* box-shadow: rgba(19, 21, 23, 0) 0px 0px 0px 0px; */
+        /* transition: box-shadow 0.1s ease; */
+        text-decoration: none;
+        color: white;
+      }
+
+      @media screen and (max-width: 700px) {
+        .wrapper {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          justify-content: space-between;
+          height: 40vh;
+        }
+        .main_section {
+          width: 100%;
+          min-height: 45%;
+          flex-direction: column;
+          height: 100%;
+          align-items: flex-start;
+          justify-content: center;
+        }
+        .shop_all_btn {
+          display: none;
+        }
+        .btn_shop_all_small {
+          display: inline-flex;
+          width: 200px;
+          margin-top: 10px;
+        }
+        .brands_info {
+          max-width: 100%;
+          width: 100%;
+          height: 45%;
+        }
+        .brand_info_title {
+          font-size: 2rem;
+        }
+        .brands_info_para {
+          font-size: 1rem;
+          width: 70%;
+        }
+        .slider {
+          height: 100%;
+          width: 95vw;
+          margin-left: 0;
+          padding-left: 0;
+          margin-right: 5px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: space-evenly;
+        }
+        /* .splide__list {
+          gap: 1rem;
+        } */
+        .splide {
+          height: auto;
+        }
+        .caption {
+          letter-spacing: 0.15rem;
+        }
+      }
+
+      @media screen and (max-width: 480px) {
+        .wrapper {
+          height: 50vh;
+        }
+        .brands_info_para {
+          width: 100%;
+        }
+        .slider {
+          width: 95vw;
+        }
+        .brands_info {
+          height: 50%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="wrapper">
+        <div class="caption">DELICIOUS GOODNESS SINCE 1959</div>
+        <div class="main_section">
+          <div class="brands_info">
+            <h2 class="brand_info_title">Our Brands</h2>
+            <span class="brands_info_para">
+              From fruity delights and pure chocolates to guilt-free snacks,
+              discover a world of possibilities with Mapro. The taste of your
+              mountain holiday - now delivered straight home.
+            </span>
+            <a href="#" class="shop_all_btn">SHOP ALL</a>
+          </div>
+          <div class="slider">
+            <div class="splide">
+              <div class="splide__track">
+                <div class="splide__list">
+                  <div class="splide__slide">
+                    <div class="slider_element">
+                      <a href="#"
+                        ><img src="Images/img1.webp" alt="img-1" />
+                        <div class="arrow-right">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="18"
+                            height="18"
+                            viewBox="0 0 13.526 13.526">
+                            <path
+                              id=""
+                              data-name=""
+                              d="M6.763,13.526a6.763,6.763,0,1,1,6.763-6.763A6.771,6.771,0,0,1,6.763,13.526Zm-.44-9.611a.57.57,0,0,0-.4.973L7.8,6.762,5.918,8.638a.571.571,0,0,0,.809.805L9.005,7.165a.572.572,0,0,0,0-.805L6.727,4.082A.567.567,0,0,0,6.323,3.915Z"
+                              fill="#fff"></path>
+                          </svg></div
+                      ></a>
+                    </div>
+                  </div>
+                  <div class="splide__slide">
+                    <div class="slider_element">
+                      <a href="#">
+                        <img src="Images/img2.webp" alt="img-2" />
+                        <div class="arrow-right">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="18"
+                            height="18"
+                            viewBox="0 0 13.526 13.526">
+                            <path
+                              id=""
+                              data-name=""
+                              d="M6.763,13.526a6.763,6.763,0,1,1,6.763-6.763A6.771,6.771,0,0,1,6.763,13.526Zm-.44-9.611a.57.57,0,0,0-.4.973L7.8,6.762,5.918,8.638a.571.571,0,0,0,.809.805L9.005,7.165a.572.572,0,0,0,0-.805L6.727,4.082A.567.567,0,0,0,6.323,3.915Z"
+                              fill="#fff"></path>
+                          </svg>
+                        </div>
+                      </a>
+                    </div>
+                  </div>
+                  <div class="splide__slide">
+                    <div class="slider_element">
+                      <a href="#">
+                        <img src="Images/img3.webp" alt="img-3" />
+                        <div class="arrow-right">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="18"
+                            height="18"
+                            viewBox="0 0 13.526 13.526">
+                            <path
+                              id=""
+                              data-name=""
+                              d="M6.763,13.526a6.763,6.763,0,1,1,6.763-6.763A6.771,6.771,0,0,1,6.763,13.526Zm-.44-9.611a.57.57,0,0,0-.4.973L7.8,6.762,5.918,8.638a.571.571,0,0,0,.809.805L9.005,7.165a.572.572,0,0,0,0-.805L6.727,4.082A.567.567,0,0,0,6.323,3.915Z"
+                              fill="#fff"></path>
+                          </svg>
+                        </div>
+                      </a>
+                    </div>
+                  </div>
+                  <div class="splide__slide">
+                    <div class="slider_element">
+                      <a href="#">
+                        <img src="Images/img4.webp" alt="img-4" />
+                        <div class="arrow-right">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="18"
+                            height="18"
+                            viewBox="0 0 13.526 13.526">
+                            <path
+                              id=""
+                              data-name=""
+                              d="M6.763,13.526a6.763,6.763,0,1,1,6.763-6.763A6.771,6.771,0,0,1,6.763,13.526Zm-.44-9.611a.57.57,0,0,0-.4.973L7.8,6.762,5.918,8.638a.571.571,0,0,0,.809.805L9.005,7.165a.572.572,0,0,0,0-.805L6.727,4.082A.567.567,0,0,0,6.323,3.915Z"
+                              fill="#fff"></path>
+                          </svg>
+                        </div>
+                      </a>
+                    </div>
+                  </div>
+                  <div class="splide__slide">
+                    <div class="slider_element">
+                      <a href="#">
+                        <img src="Images/img5.webp" alt="img-5" />
+                        <div class="arrow-right">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="18"
+                            height="18"
+                            viewBox="0 0 13.526 13.526">
+                            <path
+                              id=""
+                              data-name=""
+                              d="M6.763,13.526a6.763,6.763,0,1,1,6.763-6.763A6.771,6.771,0,0,1,6.763,13.526Zm-.44-9.611a.57.57,0,0,0-.4.973L7.8,6.762,5.918,8.638a.571.571,0,0,0,.809.805L9.005,7.165a.572.572,0,0,0,0-.805L6.727,4.082A.567.567,0,0,0,6.323,3.915Z"
+                              fill="#fff"></path>
+                          </svg>
+                        </div>
+                      </a>
+                    </div>
+                  </div>
+
+                  <div class="splide__slide">
+                    <div class="slider_element">
+                      <a href="#">
+                        <img src="Images/img6.webp" alt="img-6" />
+                        <div class="arrow-right">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="18"
+                            height="18"
+                            viewBox="0 0 13.526 13.526">
+                            <path
+                              id=""
+                              data-name=""
+                              d="M6.763,13.526a6.763,6.763,0,1,1,6.763-6.763A6.771,6.771,0,0,1,6.763,13.526Zm-.44-9.611a.57.57,0,0,0-.4.973L7.8,6.762,5.918,8.638a.571.571,0,0,0,.809.805L9.005,7.165a.572.572,0,0,0,0-.805L6.727,4.082A.567.567,0,0,0,6.323,3.915Z"
+                              fill="#fff"></path>
+                          </svg>
+                        </div>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <button class="btn_shop_all_small">SHOP ALL</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
+  <script>
+    const splide = new Splide(".splide", {
+      perPage: 3.3,
+      gap: "1.5rem",
+      pagination: false,
+      focus: 0,
+      arrows: true,
+      prev: false,
+      arrowColor: "#ffff",
+      breakpoints: {
+        700: {
+          perPage: 2.3,
+          gap: ".7rem",
+          //   height: "6rem",
+        },
+        480: {
+          perPage: 2.3,
+          gap: ".7rem",
+          //   height: "6rem",
+        },
+      },
+    });
+
+    splide.mount();
+  </script>
+</html>
